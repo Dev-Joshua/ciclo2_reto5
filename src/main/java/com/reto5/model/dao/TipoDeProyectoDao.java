@@ -1,7 +1,6 @@
 package com.reto5.model.dao;
 
 import java.sql.Connection;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -13,7 +12,7 @@ import com.reto5.util.JDBCUtilities;
 
 //En esta clase TipoDeProyecto de la carpeta dao van a ir las consultas SQL
 public class TipoDeProyectoDao {
-  public List<TipoDeProyectoVo> listar(String proyecto)throws SQLException{
+  public List<TipoDeProyectoVo> listar()throws SQLException{
     ArrayList<TipoDeProyectoVo> respuesta = new ArrayList<TipoDeProyectoVo>();
     Connection conn = JDBCUtilities.getConnection();
     Statement stm = null;

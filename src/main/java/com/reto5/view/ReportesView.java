@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import com.reto5.controller.ReportesController;
+import com.reto5.model.vo.ComprasPorProyectoVo;
 import com.reto5.model.vo.ListarLideresVo;
 import com.reto5.model.vo.TipoDeProyectoVo;
 
@@ -79,6 +80,7 @@ public class ReportesView extends JFrame implements ActionListener{
       add(pane);
     }
 
+    //Listar lideres
     //Cada que invoquen lideres llamo a este metodo para crear el modelo y actualizar el modelo a la tabla
     public void lideres() {
       try {
@@ -109,7 +111,7 @@ public class ReportesView extends JFrame implements ActionListener{
     }
 
     //Listar proyectos
-    public void proyectos(String proyecto) {
+    public void proyectos() {
       try{
         //Traigo un registro de mi tabla
         List<TipoDeProyectoVo> proyectos = controller.listarProyectos();
@@ -135,19 +137,27 @@ public class ReportesView extends JFrame implements ActionListener{
       }
     }
   
-  
-
-  // public void totalAdeudadoPorProyectosSuperioresALimite(Double limiteInferior) {
-  //     try {
-  //       List<DeudasPorProyectoVo> proyectos = controller.listaTotalDeudasProyecto(limiteInferior);
-  //       for(DeudasPorProyectoVo proyecto:proyectos){
-  //         System.out.println(proyecto);
-  //       }
-  //     } catch (Exception ex) {
-  //       System.err.println("Error: "+ex);
-  //     }
-      
-  //   }
+    //Listar compras
+    public void compras() {
+      try {
+        List<ComprasPorProyectoVo> proyectos = controller.listarCompras();
+        modelo = new DefaultTableModel();
+        modelo.addColumn("ID Compra");
+        modelo.addColumn("Constructora");
+        modelo.addColumn("Banco");
+        for(ComprasPorProyectoVo i:proyectos){
+          Object[] fila = new Object[3];
+          fila[0] = i.getId();
+          fila[1] = i.getConstructora();
+          fila[2] = i.getBancoVinculado();
+          modelo.addRow(fila);
+        }
+        tabla.setModel(modelo);
+        modelo.fireTableDataChanged();
+      } catch (Exception ex) {
+        System.err.println("Error: "+ex);
+      }
+      }
 
 
     @Override
@@ -158,8 +168,12 @@ public class ReportesView extends JFrame implements ActionListener{
         labelConsulta.setText("Consulta de líderes");                                                       
       }
       if (e.getSource() == segundoInforme) {
-        proyectos("Apartaestudio");
+        proyectos();
         labelConsulta.setText("Consulta de proyectos");
+      }
+      if (e.getSource() == tercerInforme) {
+        compras();
+        labelConsulta.setText("Consulta de compras");
       }
     }
 }
