@@ -1,23 +1,23 @@
 package com.reto5;
 
+import javax.swing.JFrame;
+import java.awt.*;
+
 import com.reto5.view.ReportesView;
 
-
+//Desde aqui realizo el layout de mi programaa
 public class App 
 {
     public static void main( String[] args )
-    {
-        System.out.println("Requerimiento ");
+    {   
+        //Creo la ventana del menu principal
         ReportesView reportesView = new ReportesView();
-        String banco = "Conavi";
-        reportesView.proyectosFinanciadosPorBanco(banco); 
-        
-        // System.out.println("Requerimiento 2");
-        // ReportesView reportesView1 = new ReportesView();
-        // reportesView1.totalAdeudadoPorProyectosSuperioresALimite(50000.0);
-
-        // System.out.println("\nRequerimiento 3");
-        // ReportesView reportesView2 = new ReportesView();
-        // reportesView2.lideresQueMasGastan();
+        reportesView.setLayout(new FlowLayout());
+        reportesView.setSize(600, 400);                 //Le indico el tamaño de la ventana
+        reportesView.setVisible(true);
+        reportesView.setResizable(false);                  //No se puede cambiar
+        reportesView.setTitle("Reto 5");
+        reportesView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  //Cerrar programa en x
+        reportesView.setLocationRelativeTo(null);                   //Ubico la ventana en el centro de la pantalla
     }
 }
