@@ -11,8 +11,10 @@ public class App
     public static void main( String[] args )
     {   
         //Creo la ventana del menu principal
+        //Llamo a la clase ReportesView para ejecutar la interfaz
         ReportesView reportesView = new ReportesView();
-        reportesView.setLayout(new FlowLayout());
+        reportesView.setLayout(new FlowLayout());                     //La ventana tiene un tamaño fijo, el contenido se va ir colocando uno debajo del otro 
+        // reportesView.setBounds(100, 100, 200, 300);
         reportesView.setSize(600, 400);                 //Le indico el tamaño de la ventana
         reportesView.setVisible(true);
         reportesView.setResizable(false);                  //No se puede cambiar
