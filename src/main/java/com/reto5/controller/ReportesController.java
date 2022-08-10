@@ -24,14 +24,15 @@ public class ReportesController {
     listarComprasDao = new ComprasPorProyectoDao();
   }
 
-  //Metodo para listar proyectos(Segundo informe)
-  public List<TipoDeProyectoVo> listarProyectos() throws SQLException {
-    return listarProyectosDao.listar();    
-  }
-
+  
   //Metodo para listar lideres(Primer informe)
   public List<ListarLideresVo> listarLideres() throws SQLException {
     return listarLideresDao.listar();    
+  }
+  
+  //Metodo para listar proyectos(Segundo informe)
+  public List<TipoDeProyectoVo> listarProyectos() throws SQLException {
+    return listarProyectosDao.listar();    
   }
 
   //MEtodo para listar compras de proyectos como proveedor Homecenter(Tercer informe)

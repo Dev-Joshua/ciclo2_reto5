@@ -10,6 +10,7 @@ import java.util.List;
 import com.reto5.model.vo.ComprasPorProyectoVo;
 import com.reto5.util.JDBCUtilities;
 
+//Clase que contendra mis consultas SQL
 public class ComprasPorProyectoDao {
     public List<ComprasPorProyectoVo> listar()throws SQLException{
       ArrayList<ComprasPorProyectoVo> respuesta = new ArrayList<ComprasPorProyectoVo>();

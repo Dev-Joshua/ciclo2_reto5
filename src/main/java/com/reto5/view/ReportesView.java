@@ -15,14 +15,16 @@ import com.reto5.model.vo.ComprasPorProyectoVo;
 import com.reto5.model.vo.ListarLideresVo;
 import com.reto5.model.vo.TipoDeProyectoVo;
 
-//De esta manera capturo los eventos del usuario para cambiar de informe
+//Extiende de la clase JFrame para hacer la interfaz
+//De esta manera capturo los eventos del usuario para cambiar de informe(Implements ActionListener)
 public class ReportesView extends JFrame implements ActionListener{
+    //Atributos
     private static ReportesController controller;
     private JMenuBar menuBar;
     private JMenu menu;
     private JMenuItem primerInforme, segundoInforme, tercerInforme;
     private JTable tabla;
-    private DefaultTableModel modelo;                                               //Mostrar los elementos a traves de una tabla vinculada a un modelo(quien tiene los datos)
+    private DefaultTableModel modelo;                                      //Mostrar los elementos a traves de una tabla vinculada a un modelo(quien tiene los datos)
     private JLabel labelTitulo, labelConsulta;
 
     public ReportesView() {
@@ -94,18 +96,20 @@ public class ReportesView extends JFrame implements ActionListener{
         modelo.addColumn("Ciudad");
         //Recorro ListarLideresVo
         for(ListarLideresVo i:lideres){                               //lideres es una lista de LideresVo
-          //Creo un array de Object y lo pongo en 4 posiciones
+          //Creo un array de Object fila y lo pongo en 4 columnas
           Object[] fila = new Object[4];                               //Cada fila va a tener 4 iileras
           fila[0] = i.getId();                                        //Por cada registro armo una fila
           fila[1] = i.getNombre();  
           fila[2] = i.getApellido();
           fila[3] = i.getCiudad();
-          modelo.addRow(fila);                                        //Esa fila la voy añadiendo al modelo y al final tendremos todas las filas para presentar
-        }
+          //Creo una fila para ir insertandola en mi tabla(modelo) por cada objetoVo(ListaLideresVo) que lea
+          modelo.addRow(fila);  
+        }                                      
         //Una vez termine el ciclo, el modelo se actualizara en la tabla
         tabla.setModel(modelo);
         modelo.fireTableDataChanged();
-      } catch (Exception ex) {
+      }  
+      catch (Exception ex) {
         System.err.println("Error: "+ex);
       }
     }
@@ -159,7 +163,7 @@ public class ReportesView extends JFrame implements ActionListener{
       }
       }
 
-
+    //Como ya implemente una interfaz(ACtionListener), le implemento el metodo a ReportesView
     @Override
     public void actionPerformed(ActionEvent e) {
       //Si! es primer informe entonces llamo a lideres para que actualice el informe
